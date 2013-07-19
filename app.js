@@ -24,7 +24,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(nunjucks({
     src: '/views',
-    endpoint: '/js/template.js',
+    output: '/public/js/template.js',
     debug: true,
     express: app
   }));
@@ -42,6 +42,7 @@ app.configure('development', function(){
 
 app.use('/codemirror', express.static(__dirname + '/node_modules/codemirror'));
 app.use('/gfm', express.static(__dirname + '/node_modules/github-flavored-markdown'));
+app.use('/highlight', express.static(__dirname + '/node_modules/highlight.js'));
 app.get('/', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){

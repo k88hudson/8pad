@@ -32,14 +32,21 @@ This is an example of *lots* of cool stuff.
 - Three
 
 [Google](https://www.google.com)!
+
+```javascript
+document.getElementById("stuff");
+```
       </textarea>
     </form>
   </section>
   <section id="preview-panel">
     <iframe id="preview"></iframe>
   </section>
+  <script src="js/nunjucks.js"></script>
+  <script src="js/template.js"></script>
   <script>
   var converter = new Showdown.converter();
+  var nj = nunjucks.env;
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     mode: 'markdown',
     lineNumbers: true,
@@ -48,11 +55,14 @@ This is an example of *lots* of cool stuff.
   });
   function updatePreview() {
     var raw = editor.getValue();
+    raw = raw.replace(/>/g, ">\n").replace(/</g, "\n<").replace(/\n{2,}/g, "\n\n");
     var html = converter.makeHtml(raw);
+    var rendered = nj.render("output.html", {html: html});
+    //Replace pre with pre code for highlight.js
     var previewFrame = document.getElementById('preview');
     var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
     preview.open();
-    preview.write(html);
+    preview.write(rendered);
     preview.close();
   }
   editor.on('change', updatePreview);
@@ -60,5 +70,3 @@ This is an example of *lots* of cool stuff.
   </script>
 </body>
 </html>
-
-  });
