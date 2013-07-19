@@ -1,0 +1,12 @@
+{
+  "name": "8pad",
+  "version": "0.0.0",
+  "description": "GFM editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "k88hudson",
+  "license": "BSD"
+}
