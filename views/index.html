@@ -5,6 +5,7 @@
   <title>8pad</title>
 
     <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="/codemirror/lib/codemirror.js"></script>
     <script src="/codemirror/addon/edit/continuelist.js"></script>
     <script src="/codemirror/mode/xml/xml.js"></script>
@@ -29,13 +30,16 @@ This is an example of *lots* of cool stuff.
 
 - One
 - Two
-- Three
+- Threeg
+
+{gif}{gif}{gif}{gif}{gif}
 
 [Google](https://www.google.com)!
 
 ```javascript
 document.getElementById("stuff");
 ```
+
       </textarea>
     </form>
   </section>
@@ -55,7 +59,15 @@ document.getElementById("stuff");
   });
   function updatePreview() {
     var raw = editor.getValue();
-    raw = raw.replace( /\[gif\]/g, '<img src="/gif?id=' + Math.random() + '">');
+    var gifs = raw.match(/{gif\-?\d*}/g);
+    if(gifs && gifs.length) {
+      for (var i=0; i<gifs.length; i++) {
+        var n = gifs[i].match(/^\d+$/) || Math.floor(Math.random() * 100);
+        console.log(n);
+        raw = raw.replace(gifs[i], '<img class="giffy" src="/gif?id=' + n + '">');
+      }
+      var total = gifs && gifs.length;
+    }
     var html = converter.makeHtml(raw);
     var rendered = nj.render("output.html", {html: html});
     //Replace pre with pre code for highlight.js
