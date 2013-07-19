@@ -20,9 +20,9 @@ var lineno = null;
 var colno = null;
 var output = "";
 try {
-output += "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>8pad output</title>\n  <script src=\"http://code.jquery.com/jquery-1.10.1.min.js\"></script>\n  <link rel=\"stylesheet\" href=\"http://yandex.st/highlightjs/7.3/styles/default.min.css\">\n\n  <script src=\"http://yandex.st/highlightjs/7.3/highlight.min.js\"></script>\n</head>\n<body>\n";
+output += "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>8pad output</title>\n  <script src=\"http://code.jquery.com/jquery-1.10.1.min.js\"></script>\n  <link rel=\"stylesheet\" href=\"http://yandex.st/highlightjs/7.3/styles/default.min.css\">\n  <link rel=\"stylesheet\" href=\"/css/tmr-night.css\">\n  <script src=\"http://yandex.st/highlightjs/7.3/highlight.min.js\"></script>\n</head>\n<body>\n";
 output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "html"), env.autoesc);
-output += "\n<script>\n$(document).ready(function() {\n  $('pre').each(function(i, el) {\n    var $el = $(el);\n    var code = document.createElement(\"code\");\n    code.className = el.getAttribute(\"lang\");\n    code.innerHTML = el.innerHTML;\n    el.innerHTML = \"\";\n    el.appendChild(code);\n    hljs.highlightBlock(el);\n  });\n});\n</script>\n</body>\n</html>\n";
+output += "\n<script>\n$(document).ready(function() {\n  $.ajax(\"/gif\", function(data) {\n    console.log(\"yp\",  data);\n  });\n  $('pre').each(function(i, el) {\n    var code = document.createElement(\"code\");\n    code.className = el.getAttribute(\"lang\");\n    code.innerHTML = el.innerHTML;\n    el.innerHTML = \"\";\n    el.appendChild(code);\n    hljs.highlightBlock(el);\n  });\n});\n</script>\n</body>\n</html>\n";
 return output;
 } catch (e) {
   runtime.handleError(e, lineno, colno);

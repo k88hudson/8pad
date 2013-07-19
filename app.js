@@ -44,6 +44,7 @@ app.use('/codemirror', express.static(__dirname + '/node_modules/codemirror'));
 app.use('/gfm', express.static(__dirname + '/node_modules/github-flavored-markdown'));
 app.use('/highlight', express.static(__dirname + '/node_modules/highlight.js'));
 app.get('/', routes.index);
+app.get('/gif', routes.gif);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

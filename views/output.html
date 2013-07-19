@@ -13,6 +13,9 @@
 {{html}}
 <script>
 $(document).ready(function() {
+  $.ajax("/gif", function(data) {
+    console.log("yp",  data);
+  });
   $('pre').each(function(i, el) {
     var code = document.createElement("code");
     code.className = el.getAttribute("lang");

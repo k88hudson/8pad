@@ -8,5 +8,8 @@
   },
   "repository": "",
   "author": "k88hudson",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "request": "~2.22.0"
+  }
 }
