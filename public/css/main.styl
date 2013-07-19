@@ -1,18 +1,23 @@
 @import "nib";
 
 .CodeMirror {
-  border-top:
-  1px solid black;
-  border-bottom: 1px solid black;
+  border: none;
+  padding: 0;
+}
+
+html, body, form, iframe, .CodeMirror {
+  height: 100%;
 }
 
 #preview {
   width: 100%;
-  border: 1px solid black;
-  height: 1000px;
+  border: none;
+  border-left: 1px solid #555;
+  box-sizing: border-box;
 }
 
-.giffy {
-  width: 45px;
-  border-radius: 45px;
+section {
+  width: 50%;
+  height: 100%;
+  float: left;
 }
