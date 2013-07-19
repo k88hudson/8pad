@@ -10,10 +10,15 @@ exports.index = function(req, res){
 exports.gif = function(req, res){
   function redirect() {
     var id = req.query.id || Math.floor(Math.random() * gifs.length);
-    res.redirect(gifs[id]);
+    if(gifs && gifs[id]) {
+      res.redirect(gifs[id]);
+    }
   }
   if (!gifs) {
     request.get(whimsyPad, function(err, resp, body) {
+      if (!body) {
+        return;
+      }
       gifs = body.match(/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/g);
       redirect();
     });
