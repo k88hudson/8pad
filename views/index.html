@@ -1,3 +1,64 @@
-<html>
-Hi.!!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>8pad</title>
+
+    <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
+    <script src="/codemirror/lib/codemirror.js"></script>
+    <script src="/codemirror/addon/edit/continuelist.js"></script>
+    <script src="/codemirror/mode/xml/xml.js"></script>
+    <script src="/codemirror/mode/markdown/markdown.js"></script>
+
+    <script src="/gfm/scripts/showdown.js"></script>
+
+  <link rel="stylesheet" href="css/main.css">
+  <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body id="home">
+
+  <section id="editor-panel">
+    <form>
+      <textarea id="code" name="code">
+Hello world.
+=============
+This is an example of *lots* of cool stuff.
+
+- One
+- Two
+- Three
+
+[Google](https://www.google.com)!
+      </textarea>
+    </form>
+  </section>
+  <section id="preview-panel">
+    <iframe id="preview"></iframe>
+  </section>
+  <script>
+  var converter = new Showdown.converter();
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    mode: 'markdown',
+    lineNumbers: true,
+    theme: 'default',
+    extraKeys: {'Enter': 'newlineAndIndentContinueMarkdownList'}
+  });
+  function updatePreview() {
+    var raw = editor.getValue();
+    var html = converter.makeHtml(raw);
+    var previewFrame = document.getElementById('preview');
+    var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
+    preview.open();
+    preview.write(html);
+    preview.close();
+  }
+  editor.on('change', updatePreview);
+  updatePreview();
+  </script>
+</body>
 </html>
+
+  });
