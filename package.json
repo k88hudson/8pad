@@ -4,7 +4,7 @@
   "description": "GFM editor",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": "",
   "author": "k88hudson",
@@ -18,5 +18,8 @@
     "highlight.js": "~7.3.0",
     "github-flavored-markdown": "~1.0.1",
     "nunjucks-middleware": "0.0.2"
+  },
+  "devDependencies": {
+    "bower": "~1.0.0"
   }
 }
