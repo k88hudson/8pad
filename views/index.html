@@ -4,13 +4,26 @@
   <meta charset="utf-8">
   <title>8pad</title>
   <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body id="home" class="hidden">
+<body id="home">
+<div class="wrapper hidden">
 <header>
-LOOK IM A USERBAR <span class="icon-bullhorn"></span>
+  8PAD
+  <div id="menu">
+    <button id="menu-btn" class="btn"><span class="icon-reorder"></span></button>
+  </div>
 </header>
+<div id="sidebar">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
 <div id="main">
   <section id="editor-panel">
     <div id="editor">
@@ -58,7 +71,8 @@ section {
     <section id="preview-panel">
       <iframe id="preview"></iframe>
     </section>
-  </div>
+  </div><!-- #main -->
+  </div><!-- .wrapper -->
   <script src="/lib/requirejs/require.js" data-main="/js/main.js"></script>
 </body>
 </html>

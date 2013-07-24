@@ -7,42 +7,107 @@ global-reset();
 */
 
 hheight = 60px;
+sidebarwidth = 350px;
+slate = #272822;
+
+slide-transition(prop=all)
+  transition: all 0.2s linear;
 
 /*********************************************************
 * Base
 */
 
+html,
 body {
-  font-family: sans-serif;
+  height: 100%;
+  background: slate;
+  color: #EEE;
+}
+
+body {
+  font-family: Inconsolata, sans-serif;
+  // Prevent weird artifacts in Chrome on CSS transforms.
+  -webkit-backface-visibility: hidden;
+}
+
+.wrapper {
+  transition: opacity 0.5s linear;
 }
 
 .hidden {
-  display: none;
+  opacity: 0;
 }
 
 /*********************************************************
-* Sections
+* Buttons
 */
-
-header {
-  height: hheight;
-  padding: 20px;
-  border-bottom: 1px solid #CCC;
-  box-sizing: border-box;
-  text-align: center;
+.btn {
+  background: slate;
+  color: #EEE;
+  border: 1px solid lighten(slate, 10%);
+  cursor: pointer;
+  &:hover {
+    background: lighten(slate, 5%);
+    border-color: lighten(slate, 15%);
+    color: #FFF;
+  }
 }
+
+/*********************************************************
+* Main
+*/
 
 #main {
   position: absolute;
   top: hheight;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
+  slide-transition();
+  &.collapsed {
+    right: sidebarwidth;
+  }
 }
 section {
   width: 50%;
-  height: 95%;
+  height: 100%;
   float: left;
   position: relative;
+}
+
+/*********************************************************
+* Header
+*/
+
+header {
+  position: relative;
+  z-index: 2;
+  height: hheight;
+  line-height: hheight;
+  padding: 0 10px 0 20px;
+  border-bottom: 1px solid lighten(slate, 10%);
+  box-sizing: border-box;
+}
+
+#menu {
+  float: right
+}
+
+#menu-btn {
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+/*********************************************************
+* Sidebar Menu
+*/
+#sidebar {
+  position: absolute;
+  width: sidebarwidth;
+  right: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /*********************************************************

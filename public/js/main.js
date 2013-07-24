@@ -18,8 +18,10 @@ require(['jquery',
   var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
 
   var editor = ace.edit('editor');
-  editor.setTheme('ace/theme/tomorrow');
+  editor.setTheme('ace/theme/monokai');
   editor.getSession().setMode('ace/mode/markdown');
+  editor.getSession().setTabSize(2);
+  editor.setShowPrintMargin(false);
 
   var converter = new Showdown.converter();
   var nj = nunjucks.env;
@@ -36,6 +38,12 @@ require(['jquery',
   editor.on('change', updatePreview);
   updatePreview();
 
-  $('body').removeClass('hidden');
+  $('.wrapper').removeClass('hidden');
+
+  // Sidebar
+  $('#menu-btn').click(function(e) {
+    $("#sidebar").toggleClass("collapsed");
+    $("#main").toggleClass("collapsed");
+  });
 
 });
