@@ -18,6 +18,6 @@
     "stylus": "~0.34.1",
     "highlight.js": "~7.3.0",
     "github-flavored-markdown": "~1.0.1",
-    "nunjucks-middleware": "0.0.2",
+    "nunjucks-middleware": "0.0.2"
   }
 }
