@@ -26,11 +26,24 @@ require(['jquery',
   var converter = new Showdown.converter();
   var nj = nunjucks.env;
 
+  function parseGifs(raw) {
+    var gifs = raw.match(/\{\{gif\-?\d*\}\}/g);
+    if(gifs && gifs.length) {
+      for (var i=0; i<gifs.length; i++) {
+        var n = gifs[i].match(/^\d+$/) || Math.floor(Math.random() * 100);
+        console.log(n);
+        raw = raw.replace(gifs[i], '<img class="giffy" src="/gif?id=' + n + '">');
+      }
+      var total = gifs && gifs.length;
+    }
+    return raw;
+  }
+
   function updatePreview() {
     var raw = editor.getValue();
+    // raw = parseGifs(raw);
     var html = converter.makeHtml(raw);
     var rendered = nj.render('output.html', {html: html});
-    console.log(rendered);
     preview.open();
     preview.write(rendered);
     preview.close();
@@ -39,12 +52,14 @@ require(['jquery',
   editor.on('change', updatePreview);
   updatePreview();
 
-  $('.wrapper').removeClass('hidden');
-
   // Sidebar
-  $('#menu-btn').click(function(e) {
-    $("#sidebar").toggleClass("collapsed");
-    $("#main").toggleClass("collapsed");
+  var $main = $('#main');
+  var $menuBtn = $('#menu-btn');
+  $menuBtn.click(function(e) {
+    $main.toggleClass('collapsed');
+    $menuBtn.toggleClass('collapsed');
   });
+
+  $('.wrapper').removeClass('hidden');
 
 });

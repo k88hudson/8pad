@@ -11,7 +11,7 @@ sidebarwidth = 350px;
 slate = #272822;
 
 slide-transition(prop=all)
-  transition: all 0.2s linear;
+  transition: all 0.1s linear;
 
 /*********************************************************
 * Base
@@ -31,7 +31,7 @@ body {
 }
 
 .wrapper {
-  transition: opacity 0.5s linear;
+transition: opacity 0.5s linear;
 }
 
 .hidden {
@@ -97,6 +97,15 @@ header {
   font-size: 20px;
   height: 40px;
   width: 40px;
+}
+
+#menu-btn {
+  > span:before {
+    slide-transition(transform);
+  }
+  &.collapsed > span:before {
+    transform: rotate(90deg);
+  }
 }
 
 /*********************************************************
