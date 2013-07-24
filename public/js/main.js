@@ -30,6 +30,7 @@ require(['jquery',
     var raw = editor.getValue();
     var html = converter.makeHtml(raw);
     var rendered = nj.render('output.html', {html: html});
+    console.log(rendered);
     preview.open();
     preview.write(rendered);
     preview.close();
