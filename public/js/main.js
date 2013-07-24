@@ -21,7 +21,6 @@ require(['jquery',
   editor.setTheme('ace/theme/tomorrow');
   editor.getSession().setMode('ace/mode/markdown');
 
-
   var converter = new Showdown.converter();
   var nj = nunjucks.env;
 
@@ -36,4 +35,7 @@ require(['jquery',
 
   editor.on('change', updatePreview);
   updatePreview();
+
+  $('body').removeClass('hidden');
+
 });

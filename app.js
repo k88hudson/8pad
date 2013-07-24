@@ -42,9 +42,6 @@ app.configure('development', function(){
 
 app.use('/lib', express.static(__dirname + '/bower_components'));
 
-app.use('/codemirror', express.static(__dirname + '/node_modules/codemirror'));
-app.use('/gfm', express.static(__dirname + '/node_modules/github-flavored-markdown'));
-app.use('/highlight', express.static(__dirname + '/node_modules/highlight.js'));
 app.get('/', routes.index);
 app.get('/gif', routes.gif);
 
