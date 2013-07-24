@@ -16,7 +16,7 @@ function compileStylus(str, path) {
 }
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 8888);
+  app.set('port', process.env.PORT || 8000);
   app.set('views', __dirname + '/views');
   app.use(express.favicon());
   app.use(express.logger('dev'));
@@ -39,6 +39,8 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
+
+app.use('/lib', express.static(__dirname + '/bower_components'));
 
 app.use('/codemirror', express.static(__dirname + '/node_modules/codemirror'));
 app.use('/gfm', express.static(__dirname + '/node_modules/github-flavored-markdown'));

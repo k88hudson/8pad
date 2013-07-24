@@ -3,27 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>8pad</title>
-
-    <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="/codemirror/lib/codemirror.js"></script>
-    <script src="/codemirror/addon/edit/continuelist.js"></script>
-    <script src="/codemirror/mode/xml/xml.js"></script>
-    <script src="/codemirror/mode/markdown/markdown.js"></script>
-
-    <script src="/gfm/scripts/showdown.js"></script>
-
+  <link rel="stylesheet" href="/lib/codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="css/main.css">
-  <!--[if IE]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
 </head>
 
 <body id="home">
 
   <section id="editor-panel">
-    <form>
-      <textarea id="code" name="code">
+    <div id="editor">
 Hello world.
 =============
 This is an example of *lots* of cool stuff.
@@ -32,53 +19,42 @@ This is an example of *lots* of cool stuff.
 - Two
 - Threeg
 
-{gif}{gif}{gif}{gif}{gif}
-
 [Google](https://www.google.com)!
 
 ```javascript
 document.getElementById("stuff");
 ```
 
-      </textarea>
-    </form>
+css
+====
+
+```css
+#preview {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+}
+
+section {
+  width: 50%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+
+#editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+```
+    </div>
   </section>
   <section id="preview-panel">
     <iframe id="preview"></iframe>
   </section>
-  <script src="js/nunjucks.js"></script>
-  <script src="js/template.js"></script>
-  <script>
-  var converter = new Showdown.converter();
-  var nj = nunjucks.env;
-  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-    mode: 'markdown',
-    lineNumbers: true,
-    theme: 'default',
-    extraKeys: {'Enter': 'newlineAndIndentContinueMarkdownList'}
-  });
-  function updatePreview() {
-    var raw = editor.getValue();
-    var gifs = raw.match(/{gif\-?\d*}/g);
-    if(gifs && gifs.length) {
-      for (var i=0; i<gifs.length; i++) {
-        var n = gifs[i].match(/^\d+$/) || Math.floor(Math.random() * 100);
-        console.log(n);
-        raw = raw.replace(gifs[i], '<img class="giffy" src="/gif?id=' + n + '">');
-      }
-      var total = gifs && gifs.length;
-    }
-    var html = converter.makeHtml(raw);
-    var rendered = nj.render("output.html", {html: html});
-    //Replace pre with pre code for highlight.js
-    var previewFrame = document.getElementById('preview');
-    var preview =  previewFrame.contentDocument ||  previewFrame.contentWindow.document;
-    preview.open();
-    preview.write(rendered);
-    preview.close();
-  }
-  editor.on('change', updatePreview);
-  updatePreview();
-  </script>
+  <script src="/lib/requirejs/require.js" data-main="/js/main.js"></script>
 </body>
 </html>

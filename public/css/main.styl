@@ -1,18 +1,14 @@
 @import "nib";
 
-.CodeMirror {
-  border: none;
-  padding: 0;
-}
+global-reset();
 
-html, body, form, iframe, .CodeMirror {
+html, body, form, iframe {
   height: 100%;
 }
 
 #preview {
   width: 100%;
   border: none;
-  border-left: 1px solid #555;
   box-sizing: border-box;
 }
 
@@ -20,4 +16,13 @@ section {
   width: 50%;
   height: 100%;
   float: left;
+  position: relative;
+}
+
+#editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

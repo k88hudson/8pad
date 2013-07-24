@@ -5,21 +5,14 @@
   <meta charset="utf-8">
   <title>8pad output</title>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
-  <link rel="stylesheet" href="/css/tmr-night.css">
-  <link rel="stylesheet" href="/css/gfm.css">
+  <link rel="stylesheet" href="/css/output.css">
   <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 </head>
 <body>
 {{html}}
 <script>
 $(document).ready(function() {
-  $('pre').each(function(i, el) {
-    var code = document.createElement("code");
-    code.className = el.getAttribute("lang");
-    code.innerHTML = el.innerHTML;
-    el.innerHTML = "";
-    el.appendChild(code);
+  $('code').each(function(i, el) {
     hljs.highlightBlock(el);
   });
 });
